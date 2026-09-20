@@ -1,0 +1,267 @@
+[
+  {
+    "file": "01_placeholders.json",
+    "kind": "schema_gap",
+    "concern": "Missing information disguised as non-empty strings: TBD/UNKNOWN.",
+    "status": "success",
+    "route": "deterministic",
+    "human_review_requested": false,
+    "llm_invoked": false,
+    "llm_response_ids": [],
+    "trace": "traces/1f0b10d915434f9d8319d1d4e9dc1086.jsonl",
+    "invoice": {
+      "invoice_number": "TBD",
+      "issue_date": "2026-09-20",
+      "currency": "EUR",
+      "supplier": {
+        "name": "UNKNOWN"
+      },
+      "line_items": [
+        {
+          "description": "TBD",
+          "quantity": 2,
+          "unit_price": 100,
+          "amount": 200
+        }
+      ],
+      "subtotal": 200,
+      "tax_amount": 38,
+      "total": 238
+    },
+    "errors": []
+  },
+  {
+    "file": "02_ambiguous_currency.json",
+    "kind": "schema_gap",
+    "concern": "Currency TBD is ambiguous but satisfies the three-uppercase-letter pattern.",
+    "status": "success",
+    "route": "deterministic",
+    "human_review_requested": false,
+    "llm_invoked": false,
+    "llm_response_ids": [],
+    "trace": "traces/24233298daa1462cbb6574e782f8a10e.jsonl",
+    "invoice": {
+      "invoice_number": "INV-TEST-002",
+      "issue_date": "2026-09-20",
+      "currency": "TBD",
+      "supplier": {
+        "name": "Example Supplier"
+      },
+      "line_items": [
+        {
+          "description": "Consulting services",
+          "quantity": 2,
+          "unit_price": 100,
+          "amount": 200
+        }
+      ],
+      "subtotal": 200,
+      "tax_amount": 38,
+      "total": 238
+    },
+    "errors": []
+  },
+  {
+    "file": "03_due_before_issue.json",
+    "kind": "business_rule_gap",
+    "concern": "Due date precedes issue date; individually valid dates receive no chronology check.",
+    "status": "success",
+    "route": "deterministic",
+    "human_review_requested": false,
+    "llm_invoked": false,
+    "llm_response_ids": [],
+    "trace": "traces/721768b796024013ac81eaa2fbe23b2a.jsonl",
+    "invoice": {
+      "invoice_number": "INV-TEST-003",
+      "issue_date": "2026-09-20",
+      "due_date": "2026-08-20",
+      "currency": "EUR",
+      "supplier": {
+        "name": "Example Supplier"
+      },
+      "line_items": [
+        {
+          "description": "Consulting services",
+          "quantity": 2,
+          "unit_price": 100,
+          "amount": 200
+        }
+      ],
+      "subtotal": 200,
+      "tax_amount": 38,
+      "total": 238
+    },
+    "errors": []
+  },
+  {
+    "file": "04_draft_not_payable.txt",
+    "kind": "business_rule_gap",
+    "concern": "The document says it is an unissued draft; the schema has no document-status field.",
+    "status": "success",
+    "route": "semantic",
+    "human_review_requested": false,
+    "llm_invoked": true,
+    "llm_response_ids": [
+      "resp_0c7176605adc534f016aafa737e89087d2a02ef056ddd42f96"
+    ],
+    "trace": "traces/65e4adc1dd034f6c835943d06e1c44dc.jsonl",
+    "invoice": {
+      "invoice_number": "INV-TEST-004",
+      "issue_date": "2026-09-20",
+      "currency": "EUR",
+      "supplier": {
+        "name": "Example Supplier"
+      },
+      "line_items": [
+        {
+          "description": "Consulting services",
+          "quantity": 2,
+          "unit_price": 100,
+          "amount": 200
+        }
+      ],
+      "subtotal": 200,
+      "tax_amount": 38,
+      "total": 238
+    },
+    "errors": [
+      {
+        "stage": "deterministic",
+        "code": "json_parse",
+        "field": "$",
+        "message": "Input is not an unambiguous JSON document; trying the invoice parsing skill."
+      }
+    ]
+  },
+  {
+    "file": "05_provisional_tax.txt",
+    "kind": "skill_probe",
+    "concern": "Printed zero tax and total are explicitly provisional; the skill should leave these unresolved.",
+    "status": "success",
+    "route": "semantic",
+    "human_review_requested": false,
+    "llm_invoked": true,
+    "llm_response_ids": [
+      "resp_0a3fd7b4e5f10ee0016aafa7394fa887d2a97361ce7fd68583"
+    ],
+    "trace": "traces/027178c1f27144308d2310ee2e4def2b.jsonl",
+    "invoice": {
+      "invoice_number": "INV-TEST-005",
+      "issue_date": "2026-09-20",
+      "currency": "EUR",
+      "supplier": {
+        "name": "Example Supplier"
+      },
+      "line_items": [
+        {
+          "description": "Consulting services",
+          "quantity": 2,
+          "unit_price": 100,
+          "amount": 200
+        }
+      ],
+      "subtotal": 200,
+      "tax_amount": 0,
+      "total": 200
+    },
+    "errors": [
+      {
+        "stage": "deterministic",
+        "code": "json_parse",
+        "field": "$",
+        "message": "Input is not an unambiguous JSON document; trying the invoice parsing skill."
+      }
+    ]
+  },
+  {
+    "file": "06_missing_tax_control.txt",
+    "kind": "control",
+    "concern": "Missing tax must not be assumed to be zero or derived from the total.",
+    "status": "human_review",
+    "route": "semantic",
+    "human_review_requested": true,
+    "llm_invoked": true,
+    "llm_response_ids": [
+      "resp_0380112ccef84327016aafa73aea6887d2b95ad6dd94bea1b5"
+    ],
+    "trace": "traces/d92255799ed44cf38175cd7aaf2fad03.jsonl",
+    "invoice": {
+      "invoice_number": "INV-TEST-006",
+      "issue_date": "2026-09-20",
+      "currency": "EUR",
+      "supplier": {
+        "name": "Example Supplier"
+      },
+      "line_items": [
+        {
+          "description": "Consulting services",
+          "quantity": 2,
+          "unit_price": 100,
+          "amount": 200
+        }
+      ],
+      "subtotal": 200,
+      "total": 200
+    },
+    "errors": [
+      {
+        "stage": "deterministic",
+        "code": "json_parse",
+        "field": "$",
+        "message": "Input is not an unambiguous JSON document; trying the invoice parsing skill."
+      },
+      {
+        "stage": "semantic",
+        "code": "validation",
+        "field": "$",
+        "message": "'tax_amount' is a required property"
+      }
+    ]
+  },
+  {
+    "file": "07_ambiguous_quantity_control.txt",
+    "kind": "control",
+    "concern": "Ambiguous quantity must not be selected merely to make arithmetic balance.",
+    "status": "human_review",
+    "route": "semantic",
+    "human_review_requested": true,
+    "llm_invoked": true,
+    "llm_response_ids": [
+      "resp_01e2ff8d3436b60e016aafa73c712487d29851f9d03bbf85ce"
+    ],
+    "trace": "traces/0ca1b1d2dff648fd9c60727dc2287bff.jsonl",
+    "invoice": {
+      "invoice_number": "INV-TEST-007",
+      "issue_date": "2026-09-20",
+      "currency": "EUR",
+      "supplier": {
+        "name": "Example Supplier"
+      },
+      "line_items": [
+        {
+          "description": "Consulting services",
+          "quantity": null,
+          "unit_price": 100,
+          "amount": 200
+        }
+      ],
+      "subtotal": 200,
+      "tax_amount": 38,
+      "total": 238
+    },
+    "errors": [
+      {
+        "stage": "deterministic",
+        "code": "json_parse",
+        "field": "$",
+        "message": "Input is not an unambiguous JSON document; trying the invoice parsing skill."
+      },
+      {
+        "stage": "semantic",
+        "code": "validation",
+        "field": "line_items.0.quantity",
+        "message": "None is not of type 'number'"
+      }
+    ]
+  }
+]

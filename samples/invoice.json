@@ -1,0 +1,14 @@
+{
+  "invoice_number": "INV-2026-001",
+  "issue_date": "2026-09-20",
+  "due_date": "2026-10-20",
+  "currency": "EUR",
+  "supplier": {"name": "Example Supplier"},
+  "customer": {"name": "Example Customer"},
+  "line_items": [
+    {"description": "Consulting services", "quantity": 2, "unit_price": 100.00, "amount": 200.00}
+  ],
+  "subtotal": 200.00,
+  "tax_amount": 38.00,
+  "total": 238.00
+}

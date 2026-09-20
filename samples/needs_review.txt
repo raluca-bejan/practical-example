@@ -1,0 +1,13 @@
+INVOICE INV-2026-002
+Issued: September 20, 2026
+Supplier: Example Supplier
+Currency: EUR
+
+Description          Quantity    Unit price    Amount
+Consulting services  2           100.00        200.00
+
+Subtotal: 200.00 EUR
+Tax:       38.00 EUR
+Total:    999.00 EUR
+
+The printed total is inconsistent. Preserve it for human review.

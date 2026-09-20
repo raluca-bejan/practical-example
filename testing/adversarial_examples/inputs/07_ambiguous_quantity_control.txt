@@ -1,0 +1,15 @@
+INVOICE INV-TEST-007
+Issue date: 2026-09-20
+Supplier: Example Supplier
+Currency: EUR
+
+Description: Consulting services
+Quantity: 2 or 3 (unconfirmed)
+Unit price: 100.00 EUR
+Line amount: 200.00 EUR
+
+Subtotal: 200.00 EUR
+Tax: 38.00 EUR
+Total: 238.00 EUR
+
+The quantity is ambiguous. The printed line amount is not confirmation of it.

@@ -1,0 +1,59 @@
+Invoice LLM judge: PASSED
+Evaluation ID: bd5c20c8c8e046b787d82aac960232cd
+Agent run ID: 95e9a7008cc04cdf9e3ac0f9d6c132ca
+Agent LLM invoked: True
+Agent response received: True
+Agent response IDs: resp_0277ad4e03cbbae4016aafa13c937487d2ad5ff3f572d37346
+Judge LLM invoked (request attempted): True
+Judge response received: True
+Judge response ID: resp_0578ef5298f69788016aafa52bddd087d29fc3f2608b270a4e
+Judge HTTP request ID: req_3ab35511a7be47abbc68b3d91873e9cf
+Judge model: gpt-4.1-mini-2025-04-14
+
+Schema correct: True
+Types correct: True
+Text correct: True
+Arithmetic correct: True
+
+The extracted invoice fully conforms to the schema with correct types and all required fields present. Each field matches the source text exactly or in normalized form for dates and numeric values. Arithmetic checks pass: line item amount equals quantity times unit price (2 * 100 = 200), subtotal matches sum of amounts (200), and total equals subtotal plus tax (200 + 38 = 238). No omissions or inventions were detected.
+
+Field checks:
+- currency: expected string, found string; type_correct=True, text_correct=True
+  Source: Currency: EUR
+  Assessment: Currency code 'EUR' matches exactly.
+- customer.name: expected string, found string; type_correct=True, text_correct=True
+  Source: Bill to: Example Customer
+  Assessment: Customer name 'Example Customer' matches exactly.
+- due_date: expected string, found string; type_correct=True, text_correct=True
+  Source: Due: October 20, 2026
+  Assessment: Due date matches after normalization to ISO format.
+- invoice_number: expected string, found string; type_correct=True, text_correct=True
+  Source: INVOICE INV-2026-001
+  Assessment: Invoice number 'INV-2026-001' extracted correctly.
+- issue_date: expected string, found string; type_correct=True, text_correct=True
+  Source: Issued: September 20, 2026
+  Assessment: Issue date matches after normalization to ISO format.
+- line_items.0.amount: expected number, found number; type_correct=True, text_correct=True
+  Source: Consulting services  2           100.00        200.00
+  Assessment: Line item amount 200.00 matches source.
+- line_items.0.description: expected string, found string; type_correct=True, text_correct=True
+  Source: Consulting services  2           100.00        200.00
+  Assessment: Line item description matches source.
+- line_items.0.quantity: expected number, found number; type_correct=True, text_correct=True
+  Source: Consulting services  2           100.00        200.00
+  Assessment: Line item quantity 2 matches source.
+- line_items.0.unit_price: expected number, found number; type_correct=True, text_correct=True
+  Source: Consulting services  2           100.00        200.00
+  Assessment: Line item unit_price 100.00 matches source.
+- subtotal: expected number, found number; type_correct=True, text_correct=True
+  Source: Subtotal: 200.00 EUR
+  Assessment: Subtotal 200.00 matches source.
+- supplier.name: expected string, found string; type_correct=True, text_correct=True
+  Source: Supplier: Example Supplier
+  Assessment: Supplier name matches source.
+- tax_amount: expected number, found number; type_correct=True, text_correct=True
+  Source: Tax:       38.00 EUR
+  Assessment: Tax amount 38.00 matches source.
+- total: expected number, found number; type_correct=True, text_correct=True
+  Source: Total:    238.00 EUR
+  Assessment: Total 238.00 matches source.

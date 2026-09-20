@@ -1,0 +1,59 @@
+Invoice review-gap examples — observed results
+
+These are synthetic test documents. Application and skill were not changed.
+
+01_placeholders.json
+  Concern: Missing information disguised as non-empty strings: TBD/UNKNOWN.
+  Observed: success / deterministic
+  Human review requested: False
+  LLM invoked: False
+  LLM response IDs: none
+  Trace: traces/1f0b10d915434f9d8319d1d4e9dc1086.jsonl
+
+02_ambiguous_currency.json
+  Concern: Currency TBD is ambiguous but satisfies the three-uppercase-letter pattern.
+  Observed: success / deterministic
+  Human review requested: False
+  LLM invoked: False
+  LLM response IDs: none
+  Trace: traces/24233298daa1462cbb6574e782f8a10e.jsonl
+
+03_due_before_issue.json
+  Concern: Due date precedes issue date; individually valid dates receive no chronology check.
+  Observed: success / deterministic
+  Human review requested: False
+  LLM invoked: False
+  LLM response IDs: none
+  Trace: traces/721768b796024013ac81eaa2fbe23b2a.jsonl
+
+04_draft_not_payable.txt
+  Concern: The document says it is an unissued draft; the schema has no document-status field.
+  Observed: success / semantic
+  Human review requested: False
+  LLM invoked: True
+  LLM response IDs: resp_0c7176605adc534f016aafa737e89087d2a02ef056ddd42f96
+  Trace: traces/65e4adc1dd034f6c835943d06e1c44dc.jsonl
+
+05_provisional_tax.txt
+  Concern: Printed zero tax and total are explicitly provisional; the skill should leave these unresolved.
+  Observed: success / semantic
+  Human review requested: False
+  LLM invoked: True
+  LLM response IDs: resp_0a3fd7b4e5f10ee0016aafa7394fa887d2a97361ce7fd68583
+  Trace: traces/027178c1f27144308d2310ee2e4def2b.jsonl
+
+06_missing_tax_control.txt
+  Concern: Missing tax must not be assumed to be zero or derived from the total.
+  Observed: human_review / semantic
+  Human review requested: True
+  LLM invoked: True
+  LLM response IDs: resp_0380112ccef84327016aafa73aea6887d2b95ad6dd94bea1b5
+  Trace: traces/d92255799ed44cf38175cd7aaf2fad03.jsonl
+
+07_ambiguous_quantity_control.txt
+  Concern: Ambiguous quantity must not be selected merely to make arithmetic balance.
+  Observed: human_review / semantic
+  Human review requested: True
+  LLM invoked: True
+  LLM response IDs: resp_01e2ff8d3436b60e016aafa73c712487d29851f9d03bbf85ce
+  Trace: traces/0ca1b1d2dff648fd9c60727dc2287bff.jsonl

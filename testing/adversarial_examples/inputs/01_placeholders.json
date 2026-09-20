@@ -1,0 +1,12 @@
+{
+  "invoice_number": "TBD",
+  "issue_date": "2026-09-20",
+  "currency": "EUR",
+  "supplier": {"name": "UNKNOWN"},
+  "line_items": [
+    {"description": "TBD", "quantity": 2, "unit_price": 100, "amount": 200}
+  ],
+  "subtotal": 200,
+  "tax_amount": 38,
+  "total": 238
+}

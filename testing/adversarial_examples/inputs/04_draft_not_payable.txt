@@ -1,0 +1,17 @@
+DRAFT / PRO FORMA - NOT ISSUED - DO NOT PAY
+
+Invoice number: INV-TEST-004
+Issue date: 2026-09-20
+Supplier: Example Supplier
+Currency: EUR
+
+Description: Consulting services
+Quantity: 2
+Unit price: 100.00 EUR
+Line amount: 200.00 EUR
+
+Subtotal: 200.00 EUR
+Tax: 38.00 EUR
+Total: 238.00 EUR
+
+This document is a draft estimate, not an issued invoice. No payment is due.

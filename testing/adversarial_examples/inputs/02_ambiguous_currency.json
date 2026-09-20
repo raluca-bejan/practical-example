@@ -1,0 +1,12 @@
+{
+  "invoice_number": "INV-TEST-002",
+  "issue_date": "2026-09-20",
+  "currency": "TBD",
+  "supplier": {"name": "Example Supplier"},
+  "line_items": [
+    {"description": "Consulting services", "quantity": 2, "unit_price": 100, "amount": 200}
+  ],
+  "subtotal": 200,
+  "tax_amount": 38,
+  "total": 238
+}

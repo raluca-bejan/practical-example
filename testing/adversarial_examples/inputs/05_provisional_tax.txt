@@ -1,0 +1,16 @@
+INVOICE INV-TEST-005
+Issue date: 2026-09-20
+Supplier: Example Supplier
+Currency: EUR
+
+Description: Consulting services
+Quantity: 2
+Unit price: 100.00 EUR
+Line amount: 200.00 EUR
+
+Subtotal: 200.00 EUR
+Tax: 0.00 EUR *
+Total: 200.00 EUR *
+
+* The zero tax is a system placeholder, not a confirmed tax amount. The tax
+amount and final total are not determined. Accounting must confirm them.

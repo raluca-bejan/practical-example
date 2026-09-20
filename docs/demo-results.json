@@ -1,0 +1,52 @@
+[
+  {
+    "sample": "invoice.json",
+    "expected": "success",
+    "actual": "success",
+    "route": "deterministic",
+    "passed": true,
+    "run_id": "cfbdff51ddde4cf3996b60a1315b6bca",
+    "trace": "demo-invoice-json.jsonl",
+    "errors": []
+  },
+  {
+    "sample": "invoice.txt",
+    "expected": "success",
+    "actual": "success",
+    "route": "semantic",
+    "passed": true,
+    "run_id": "95e9a7008cc04cdf9e3ac0f9d6c132ca",
+    "trace": "demo-invoice-txt.jsonl",
+    "errors": [
+      {
+        "stage": "deterministic",
+        "code": "json_parse",
+        "field": "$",
+        "message": "Input is not an unambiguous JSON document; trying the invoice parsing skill."
+      }
+    ]
+  },
+  {
+    "sample": "needs_review.txt",
+    "expected": "human_review",
+    "actual": "human_review",
+    "route": "semantic",
+    "passed": true,
+    "run_id": "f6c472c9176047f6a3349f678a890a83",
+    "trace": "demo-needs_review-txt.jsonl",
+    "errors": [
+      {
+        "stage": "deterministic",
+        "code": "json_parse",
+        "field": "$",
+        "message": "Input is not an unambiguous JSON document; trying the invoice parsing skill."
+      },
+      {
+        "stage": "semantic",
+        "code": "validation",
+        "field": "total",
+        "message": "Expected 238.00; found 999.00 (tolerance 0.01)."
+      }
+    ]
+  }
+]

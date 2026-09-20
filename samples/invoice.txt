@@ -1,0 +1,13 @@
+INVOICE INV-2026-001
+Issued: September 20, 2026
+Due: October 20, 2026
+Supplier: Example Supplier
+Bill to: Example Customer
+Currency: EUR
+
+Description          Quantity    Unit price    Amount
+Consulting services  2           100.00        200.00
+
+Subtotal: 200.00 EUR
+Tax:       38.00 EUR
+Total:    238.00 EUR
